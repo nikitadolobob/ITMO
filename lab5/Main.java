@@ -12,6 +12,8 @@ public class Main {
 
     private static final Hashtable<Integer,Organization> organizations = new Hashtable<>();
 
+    public static String inputFile;
+
     /**
      * Функция, запускающая приложение.
      *
@@ -19,10 +21,9 @@ public class Main {
      */
     public static void main(String[] arg){
 
-        //System.out.println(System.getenv("PATH"));
-        String filename = "C:\\Users\\myav\\IdeaProjects\\ITMO_labs\\src\\lab5\\resources\\zhest.json"; //TODO переменная окружения
+        inputFile = "C:\\Users\\myav\\IdeaProjects\\ITMO_labs\\src\\lab5\\resources\\zhest.json"; //TODO переменная окружения
 
-        YamlReader inputFileReader = new YamlReader(organizations, filename);
+        YamlReader inputFileReader = new YamlReader(organizations, inputFile);
         inputFileReader.readData();
         UserInteraction userInteraction = new UserInteraction(organizations);
         userInteraction.start();

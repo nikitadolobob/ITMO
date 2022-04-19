@@ -1,9 +1,15 @@
 package lab5.enumerations;
 
-import lab5.Field;
+import lab5.interfaces.Field;
 import lab5.models.Coordinates;
 
+/**
+ * Список полей объекта Координаты
+ */
 public enum CoordinatesField implements Field<Coordinates> {
+    /**
+     * X координата.
+     */
     X(false) {
 
         @Override
@@ -27,6 +33,9 @@ public enum CoordinatesField implements Field<Coordinates> {
             System.out.println("Введите вещественное число: x-координату организации. Она не должна превышать 280.");
         }
     },
+    /**
+     * Y координата.
+     */
     Y(false) {
         @Override
         public Float get(Coordinates coordinates) {
@@ -50,8 +59,16 @@ public enum CoordinatesField implements Field<Coordinates> {
         }
 
     };
+    /**
+     * Поле, показывающее, может ли поле быть null.
+     */
     public final boolean nullValid;
 
+    /**
+     * Создает новый Coordinates field.
+     *
+     * @param nullValid поле, показывающее, может ли поле быть null
+     */
     CoordinatesField(boolean nullValid) {
         this.nullValid = nullValid;
     }

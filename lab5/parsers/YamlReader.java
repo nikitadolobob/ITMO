@@ -13,18 +13,48 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+/**
+ * Класс, осуществляющий чтение с YAML
+ */
 public class YamlReader extends YamlParser {
 
+    /**
+     * Массив считанных строк
+     */
     private final ArrayList<String> lines;
+    /**
+     * Input stream reader для чтения данных.
+     */
     private  InputStreamReader inputStreamReader;
 
+    /**
+     * Заготовка объекта Организация.
+     */
     private Organization organization;
+    /**
+     * Заготовка объекта координаты.
+     */
     private Coordinates coordinates;
+    /**
+     * Заготовка объекта адрес.
+     */
     private Address address;
+    /**
+     * Заготовка объекта город.
+     */
     private Location town;
 
+    /**
+     * Ключ, присваемый новому значению при добавлении в коллекцию
+     */
     private int number = 0;
 
+    /**
+     * Конструктор создает новый Yaml reader.
+     *
+     * @param o        коллекция организаций
+     * @param filePath yaml-файл для считывания
+     */
     public YamlReader(Hashtable<Integer, Organization> o, String filePath){
 
         super(o, filePath);
@@ -57,6 +87,9 @@ public class YamlReader extends YamlParser {
     }
 
 
+    /**
+     * Метод, запускающий процесс считывания данных с файла
+     */
     public void readData(){
 
         openFile();
@@ -101,6 +134,9 @@ public class YamlReader extends YamlParser {
 
     }
 
+    /**
+     * Метод, парсящий YAML
+     */
     public void parseYAML(){
         boolean objectsStarted = false;
         boolean newObject = false;
@@ -154,15 +190,24 @@ public class YamlReader extends YamlParser {
 
     }
 
+    /**
+     * Метод, собирающий все шаблоны объектов в один и добавляющий его в коллекцию.
+     */
     private void add(){
         organization.setCoordinates(coordinates);
         address.setTown(town);
         organization.setPostalAddress(address);
-        organizations.put(number++, organization);
+        organizations.put(number++, new Organization(organization));
     }
 
-    public void fillOrganization(String key, String value, String parent) throws Exception {
-        //System.out.println(key + " " + value + " " + parent);
+    /**
+     * Метод, определяющий, какой из объектов мы сейчас считываем и добавляющий к нему новое поле
+     *
+     * @param key    название поле, которое считали
+     * @param value  значение поле, которое считали
+     * @param parent родительский элемент в Yaml-дереве для этого поля (организация, город, координаты и тд)
+     */
+    public void fillOrganization(String key, String value, String parent) {
         switch (parent) {
             case "TOWN":
                 town.setFields(key, value, LocationField.values());

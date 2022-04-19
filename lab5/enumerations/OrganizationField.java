@@ -1,6 +1,6 @@
 package lab5.enumerations;
 
-import lab5.Field;
+import lab5.interfaces.Field;
 import lab5.models.Address;
 import lab5.models.Coordinates;
 import lab5.models.Organization;
@@ -9,7 +9,13 @@ import java.time.ZonedDateTime;
 
 import static java.lang.Math.abs;
 
+/**
+ * Список полей объекта Организация.
+ */
 public enum OrganizationField implements Field<Organization> {
+    /**
+     * Название организации.
+     */
     NAME(false) {
         @Override
         public String get(Organization organization) {
@@ -27,6 +33,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите название организации. Оно не может быть пустым!");
         }
     },
+    /**
+     * Координаты организации.
+     */
     COORDINATES(false) {
         @Override
         public Coordinates get(Organization organization) {
@@ -51,6 +60,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите координаты позиции, в которой находится организация.");
         }
     },
+    /**
+     * Дата создания организации.
+     */
     CREATIONDATE(false) {
         @Override
         public ZonedDateTime get(Organization organization) {
@@ -82,6 +94,9 @@ public enum OrganizationField implements Field<Organization> {
             set(organization);
         }
     },
+    /**
+     * Годовой оборот организации.
+     */
     ANNUALTURNOVER(false){
         @Override
         public Long get(Organization object) {
@@ -98,6 +113,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите ежегодный оборот организации.");
         }
     },
+    /**
+     * Полное название организации.
+     */
     FULLNAME(false){
         @Override
         public String get(Organization object) {
@@ -114,6 +132,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите полное название организации");
         }
     },
+    /**
+     * Количество сотрудников.
+     */
     EMPLOYEESCOUNT(false){
         @Override
         public Integer get(Organization object) {
@@ -132,6 +153,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите количество сотрудников организации.");
         }
     },
+    /**
+     * Тип организации.
+     */
     TYPE(false){
         @Override
         public OrganizationType get(Organization object) {
@@ -157,6 +181,9 @@ public enum OrganizationField implements Field<Organization> {
             }
         }
     },
+    /**
+     * Адрес организации.
+     */
     ADRESS(false){
         @Override
         public Address get(Organization object) {
@@ -185,6 +212,9 @@ public enum OrganizationField implements Field<Organization> {
             System.out.println("Введите почтовый адрес организации.");
         }
     },
+    /**
+     * Id.
+     */
     ID( false) {
         @Override
         public Integer get(Organization organization) {
@@ -223,9 +253,17 @@ public enum OrganizationField implements Field<Organization> {
 
     };
 
+    /**
+     * поле, показывающее, может ли поле быть null.
+     */
     protected final boolean nullValid;
 
 
+    /**
+     *  Создает новый Organization field.
+     *
+     * @param nullValid поле, показывающее, может ли поле быть null
+     */
     OrganizationField(boolean nullValid) {
         this.nullValid = nullValid;
     }

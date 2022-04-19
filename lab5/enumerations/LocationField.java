@@ -1,6 +1,6 @@
 package lab5.enumerations;
 
-import lab5.Field;
+import lab5.interfaces.Field;
 import lab5.models.Location;
 
 public enum LocationField implements Field<Location> {
